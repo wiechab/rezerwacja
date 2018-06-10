@@ -4,12 +4,12 @@ import java.time.LocalDate;
 
 //Założenia
 //1 Rezerwacja dot. 1 Klienta i 1 Obiektu w danym, ciągłym przedziale dat od..do
-//Żeby nie komplikować Rezerwacja może obejmować 1 pokój
+//Rezerwacja może obejmować wiele pokoi, ale w 1 obiekcie
 //Żeby nie komplikować cennik sezonowy dla kategori pokoju
 
 public interface Rezerwacja {
 
-	public Long zarejestrujRezerwacje(Long id_klienta, Long id_pokoju, LocalDate dataOd, LocalDate dataDo) ; //zwraca id
+	public Long zarejestrujRezerwacje(Long id_klienta, Long id_obiektu, Long id_pokoju, LocalDate dataOd, LocalDate dataDo) ; //zwraca id rez Long id_pokoju - tu ma być LISTA
 	
 	public void modyfikujRezerwacje(Long id);
 	

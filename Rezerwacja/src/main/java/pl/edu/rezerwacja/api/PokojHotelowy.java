@@ -8,7 +8,7 @@ public interface PokojHotelowy {
 	
 	public Long dodajPokoj() ; //zwraca id
 	
-	public void modyfikujPokoj(Long id); //dodać status pokoju wyłączony/aktywny nie robię osobnej metody na łącz/wyłącz z eksploatacji
+	public void modyfikujPokoj(Long id); //
 	
 	public void usunPokoj(Long id); //dla id
 	
@@ -18,7 +18,7 @@ public interface PokojHotelowy {
 	
 	public void dajListePokoiObiektu(Long id); // zwraca listę wszystkich pokoi dla id obiektu: id /numer / opis_skr/ status  itp
 	
-	public void dajListePokoiObiektuNaDzien(Long id, LocalDate data); //na GUI będą inaczej wyświetlone wolne / zarezerwowane / wyłączone
+	public void dajListePokoiObiektuNaDzien(Long id, LocalDate data); //na GUI będą inaczej wyświetlone wolne / zarezerwowane 
 	
 	
 	
