@@ -21,7 +21,7 @@ public class Pokoj implements Serializable {
 	
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "ID_OBIEKT", foreignKey = @ForeignKey(name = "FK_POKOJ_TO_OBJEKT"))
-	private ObiektHotelowy obiekt;
+	private Obiekt obiekt;
 
 	@Column(name = "NUMER", nullable = false, length = 10)
 	private String numer;
@@ -41,11 +41,11 @@ public class Pokoj implements Serializable {
 		this.id = id;
 	}
 
-	public ObiektHotelowy getObiekt() {
+	public Obiekt getObiekt() {
 		return obiekt;
 	}
 
-	public void setObiekt(ObiektHotelowy obiekt) {
+	public void setObiekt(Obiekt obiekt) {
 		this.obiekt = obiekt;
 	}
 

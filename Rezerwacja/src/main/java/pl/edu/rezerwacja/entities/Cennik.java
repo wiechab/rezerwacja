@@ -22,7 +22,7 @@ public class Cennik implements Serializable {
 	
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "ID_OBIEKT", foreignKey = @ForeignKey(name = "FK_CENNIK_TO_OBJEKT"))
-	private ObiektHotelowy obiekt;
+	private Obiekt obiekt;
 	
 	@Column(name = "KATEGORIA", nullable = false, length = 15)
 	@Enumerated(EnumType.STRING)

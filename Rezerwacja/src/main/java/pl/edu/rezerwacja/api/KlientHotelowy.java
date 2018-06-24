@@ -1,6 +1,6 @@
 package pl.edu.rezerwacja.api;
 
-public interface Klient {
+public interface KlientHotelowy {
 
 	public Long dodajKlienta() ; //zwraca id
 	

@@ -2,7 +2,7 @@ package pl.edu.rezerwacja.api;
 
 //cennik będzie obowiązywał dla danej kategorii pokoju w danym sezonie, w danym obiekcie
 
-public interface Cennik {
+public interface CennikHotelowy {
 
 	public Long dodajCennik(Long id_obiektu, int rok, String sezon) ; //zwraca id
 	

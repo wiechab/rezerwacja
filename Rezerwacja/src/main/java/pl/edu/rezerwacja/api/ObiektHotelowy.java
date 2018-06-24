@@ -1,16 +1,21 @@
 package pl.edu.rezerwacja.api;
 
+import java.util.List;
 
+import javax.ws.rs.core.Response;
+
+import pl.edu.rezerwacja.entities.Obiekt;
 
 public interface ObiektHotelowy {
 
-	public Long dodajObiekt(String nazwa, String miejscowosc, String adres) ; //zwraca id obiektu
+	public Response dodajObiekt(Obiekt obiekt) ; 
 	
-	public void modyfikujObiekt(Long id); //dla id
+	public Response modyfikujObiekt(Obiekt obiekt); 
 	
-	public void przegladajObiekt(Long id); //To samo co w modyfikuj ale bez możliwości edycji
+	public Response przegladajObiekt(Long id); 
 	
-	public void szukajObiektu(); //wg.kryteriów wyboru Lista na wejściu/wyjściu zwraca liste: ID/  Nazwa / lokalizacja / gwiazdki itp
-	
+	public List<Obiekt> szukajObiektu(String miejscowosc); //wg.kryteriów wyboru Lista na wejściu/wyjściu zwraca liste: ID/  Nazwa / lokalizacja / gwiazdki itp
+
+
 
 }

@@ -20,7 +20,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.Query;
 
 import pl.edu.rezerwacja.kernel.RequestTest;
-import pl.edu.rezerwacja.entities.ObiektHotelowy;
+import pl.edu.rezerwacja.entities.Obiekt;
 
 
 
@@ -40,51 +40,51 @@ public class ObiektHotelowyDao {
 	}
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-	public void create(ObiektHotelowy obiektHotelowy) {
+	public void create(Obiekt obiekt) {
 		log.info("ObiektHotelowy przed persist");
-		em.persist(obiektHotelowy);
+		em.persist(obiekt);
 
 		requestTest.add("Po odpaleniu");
 		
 		
 	}
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public ObiektHotelowy find(Long id) {
-		EntityGraph<ObiektHotelowy> eg = (EntityGraph<ObiektHotelowy>) em.createEntityGraph(ObiektHotelowy.class);
+	public Obiekt find(Long id) {
+		EntityGraph<Obiekt> eg = (EntityGraph<Obiekt>) em.createEntityGraph(Obiekt.class);
 		eg.addSubgraph("pokoje");
 		eg.addSubgraph("cennik");
 		Map hints = new HashMap<>();
 		hints.put("javax.persistence.fetchgraph", eg);
-		return em.find(ObiektHotelowy.class, id);
+		return em.find(Obiekt.class, id);
 	}
 	
-	public ObiektHotelowy update(ObiektHotelowy obiekt) {
+	public Obiekt update(Obiekt obiekt) {
 		System.out.println(em.contains(obiekt));
 		return em.merge(obiekt);
 	}
 
 	
-	public List<ObiektHotelowy> select (){
+	public List<Obiekt> select (){
 		Query query = em.createQuery("select o from ObiektHotelowy o");
 		return query.getResultList();
 	}
 	
 	@ExcludeClassInterceptors
-	public ObiektHotelowy updateObiektHotelowyNazwa(Long id, String nazwa) {
-		ObiektHotelowy updateObiektHotelowy = find(id);
+	public Obiekt updateObiektHotelowyNazwa(Long id, String nazwa) {
+		Obiekt updateObiektHotelowy = find(id);
 		em.lock(updateObiektHotelowy, LockModeType.WRITE);
 		updateObiektHotelowy.setNazwa(nazwa);
 		return updateObiektHotelowy;
 	}
 	
-	public ObiektHotelowy szukajPoNazwie(String nazwa) {
+	public Obiekt szukajPoNazwie(String nazwa) {
 		Query query = em.createQuery(
 				"select o from ObiektHotelowy o LEFT JOIN FETCH o.pokoje p LEFT JOIN o.cennik c where o.nazwa = ?1");
 		query.setParameter(1, nazwa);
-		return (ObiektHotelowy) query.getSingleResult();
+		return (Obiekt) query.getSingleResult();
 	}
 
-	public  List<ObiektHotelowy>  szukajPoMiejscowosci(String miejscowosc) {
+	public  List<Obiekt>  szukajPoMiejscowosci(String miejscowosc) {
 		Query query = em.createQuery(
 				"select o from ObiektHotelowy o LEFT JOIN FETCH o.pokoje p LEFT JOIN o.cennik c where o.miejscowosc = ?1");
 		query.setParameter(1, miejscowosc);
@@ -92,12 +92,12 @@ public class ObiektHotelowyDao {
 	}
 	
 	@PrePersist
-	private void beforeCreate(ObiektHotelowy object) {
+	private void beforeCreate(Obiekt object) {
 		System.out.println("Walidacja ...." + object);
 	}
 
 	@PostLoad
-	private void postLoad(ObiektHotelowy obiekt) {
+	private void postLoad(Obiekt obiekt) {
 		//obiekt.setPokoje(pokojeDao.pokojeObiektu(obiekt.getId()));
 		obiekt.getCennik().size();
 		System.out.println(obiekt);

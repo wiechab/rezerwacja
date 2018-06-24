@@ -7,7 +7,7 @@ import java.time.LocalDate;
 //Rezerwacja może obejmować wiele pokoi, ale w 1 obiekcie
 //Żeby nie komplikować cennik sezonowy dla kategori pokoju
 
-public interface Rezerwacja {
+public interface RezerwacjaHotelowa {
 
 	public Long zarejestrujRezerwacje(Long id_klienta, Long id_obiektu, Long id_pokoju, LocalDate dataOd, LocalDate dataDo) ; //zwraca id rez Long id_pokoju - tu ma być LISTA
 	
