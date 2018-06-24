@@ -29,11 +29,15 @@ public class ObiektHotelowyDao {
 	private Logger log = Logger.getLogger("ObiektHotelowyDao");
 	
 
-	@PersistenceContext(unitName = "PolisaPU")
+	@PersistenceContext(unitName = "Rezerwacja")
 	private EntityManager em;
 
 	@Inject
 	private RequestTest requestTest;
+	
+
+	@Inject
+	private PokojHotelowyDao pokojHotelowyDao;
 	
 	public ObiektHotelowyDao() {
 		
@@ -41,13 +45,13 @@ public class ObiektHotelowyDao {
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public void create(Obiekt obiekt) {
-		log.info("ObiektHotelowy przed persist");
+		log.info("Obiekt przed persist");
 		em.persist(obiekt);
 
 		requestTest.add("Po odpaleniu");
-		
-		
+	
 	}
+	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Obiekt find(Long id) {
 		EntityGraph<Obiekt> eg = (EntityGraph<Obiekt>) em.createEntityGraph(Obiekt.class);
@@ -64,8 +68,8 @@ public class ObiektHotelowyDao {
 	}
 
 	
-	public List<Obiekt> select (){
-		Query query = em.createQuery("select o from ObiektHotelowy o");
+	public List<Obiekt> listaObiektow (){
+		Query query = em.createQuery("select o from Obiekt o");
 		return query.getResultList();
 	}
 	
@@ -79,7 +83,7 @@ public class ObiektHotelowyDao {
 	
 	public Obiekt szukajPoNazwie(String nazwa) {
 		Query query = em.createQuery(
-				"select o from ObiektHotelowy o LEFT JOIN FETCH o.pokoje p LEFT JOIN o.cennik c where o.nazwa = ?1");
+				"select o from Obiekt o LEFT JOIN FETCH o.pokoje p LEFT JOIN o.cennik c where o.nazwa = ?1");
 		query.setParameter(1, nazwa);
 		return (Obiekt) query.getSingleResult();
 	}
@@ -98,8 +102,8 @@ public class ObiektHotelowyDao {
 
 	@PostLoad
 	private void postLoad(Obiekt obiekt) {
-		//obiekt.setPokoje(pokojeDao.pokojeObiektu(obiekt.getId()));
-		obiekt.getCennik().size();
+		obiekt.setPokoje(pokojHotelowyDao.pokojeObiektu(obiekt.getId()));
+		//obiekt.getCennik().size();
 		System.out.println(obiekt);
 	}
 

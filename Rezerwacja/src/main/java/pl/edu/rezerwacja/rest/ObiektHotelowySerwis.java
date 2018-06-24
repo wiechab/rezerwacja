@@ -1,6 +1,6 @@
 package pl.edu.rezerwacja.rest;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -19,7 +19,7 @@ import pl.edu.rezerwacja.api.ObiektHotelowy;
 import pl.edu.rezerwacja.dao.ObiektHotelowyDao;
 import pl.edu.rezerwacja.entities.Obiekt;
 
-@Path("/rezerwacja/obiekt")
+@Path("/obiekt")
 public class ObiektHotelowySerwis implements ObiektHotelowy{
 	
 	private Logger log = Logger.getLogger("ObiektHotelowySerwis");
@@ -31,6 +31,7 @@ public class ObiektHotelowySerwis implements ObiektHotelowy{
 	@Override
 
 	@POST
+	@Path("/dodaj")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Response dodajObiekt(Obiekt obiekt) {
@@ -45,6 +46,7 @@ public class ObiektHotelowySerwis implements ObiektHotelowy{
 
 	@Override
 	@PUT
+	@Path("/modyfukuj")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response modyfikujObiekt(Obiekt obiekt) {
@@ -58,14 +60,15 @@ public class ObiektHotelowySerwis implements ObiektHotelowy{
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response przegladajObiekt(@PathParam("id") Long id) {
-		obiektHotelowyDao.find(id);
-		return Response.status(200).build();
+		Obiekt result = obiektHotelowyDao.find(id);
+		
+		return Response.status(200).entity(result).build();
 		
 	}
 
 	@Override
 	@GET
-	@Path("/szukaj/miejscowosc/{miejscowosc}")
+	@Path("/szukaj/{miejscowosc}")
 	public List<Obiekt> szukajObiektu(@PathParam("miejscowosc") String miejscowosc) {
 		
 		List<Obiekt> obiekty = obiektHotelowyDao.szukajPoMiejscowosci(miejscowosc);
