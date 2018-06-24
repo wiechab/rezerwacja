@@ -37,6 +37,58 @@ public class Cennik implements Serializable {
 	
 	@Column(name = "CENA", nullable = false )
 	private BigDecimal cena;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Obiekt getObiekt() {
+		return obiekt;
+	}
+
+	public void setObiekt(Obiekt obiekt) {
+		this.obiekt = obiekt;
+	}
+
+	public KategoriaPokoju getKategoria() {
+		return kategoria;
+	}
+
+	public void setKategoria(KategoriaPokoju kategoria) {
+		this.kategoria = kategoria;
+	}
+
+	public int getRok() {
+		return rok;
+	}
+
+	public void setRok(int rok) {
+		this.rok = rok;
+	}
+
+	public Sezon getSezon() {
+		return sezon;
+	}
+
+	public void setSezon(Sezon sezon) {
+		this.sezon = sezon;
+	}
+
+	public BigDecimal getCena() {
+		return cena;
+	}
+
+	public void setCena(BigDecimal cena) {
+		this.cena = cena;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	
 
 	/*

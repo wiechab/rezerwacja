@@ -90,7 +90,7 @@ public class ObiektHotelowyDao {
 
 	public  List<Obiekt>  szukajPoMiejscowosci(String miejscowosc) {
 		Query query = em.createQuery(
-				"select o from ObiektHotelowy o LEFT JOIN FETCH o.pokoje p LEFT JOIN o.cennik c where o.miejscowosc = ?1");
+				"select o from Obiekt o LEFT JOIN FETCH o.pokoje p LEFT JOIN o.cennik c where o.miejscowosc = ?1");
 		query.setParameter(1, miejscowosc);
 		return query.getResultList();
 	}

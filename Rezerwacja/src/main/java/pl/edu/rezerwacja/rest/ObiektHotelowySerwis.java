@@ -68,12 +68,13 @@ public class ObiektHotelowySerwis implements ObiektHotelowy{
 
 	@Override
 	@GET
+	// wstawić adnotacje dla XMLelement - listy
 	@Path("/szukaj/{miejscowosc}")
 	public List<Obiekt> szukajObiektu(@PathParam("miejscowosc") String miejscowosc) {
 		
 		List<Obiekt> obiekty = obiektHotelowyDao.szukajPoMiejscowosci(miejscowosc);
-
 		return obiekty;
+		//return Response.status(200).allow(obiekty).build();
 
 		}
 
