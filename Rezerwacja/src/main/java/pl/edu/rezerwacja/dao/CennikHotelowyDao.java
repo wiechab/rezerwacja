@@ -1,5 +1,6 @@
 package pl.edu.rezerwacja.dao;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
@@ -8,10 +9,10 @@ import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import pl.edu.rezerwacja.entities.Cennik;
 import pl.edu.rezerwacja.entities.Obiekt;
-import pl.edu.rezerwacja.entities.Pokoj;
 import pl.edu.rezerwacja.kernel.RequestTest;
 
 @Stateless
@@ -49,6 +50,12 @@ public class CennikHotelowyDao {
 	
 	public void usun(Long id) {
 		em.remove(Cennik.class);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Cennik> cennikObiektu (Long obiektId){
+		Query query = em.createQuery("select c from Cennik c where c.obiekt.id = ?1", Cennik.class);
+		query.setParameter(1, obiektId);
+		return query.getResultList();
 	}
 
 }

@@ -1,18 +1,24 @@
 package pl.edu.rezerwacja.api;
 
+import pl.edu.rezerwacja.entities.Klient;
+
+import java.util.List;
+
+import javax.ws.rs.core.Response;
+
 public interface KlientHotelowy {
 
-	public Long dodajKlienta() ; //zwraca id
+	public Response dodajKlienta(Klient klient) ; 
 	
-	public void modyfikujDaneKlienta(Long id);  //dla id
+	public Response modyfikujDaneKlienta(Klient klient);  
 	
 	public void usunKlienta(Long id);  //dla id
 	
-	public void przegladajDaneKlienta(Long id);
+	public Response przegladajDaneKlienta(Long id);
 	
-	public void szukajKlienta();
+	public Response szukajKlienta(String nazwisko_nazwa);
 	
-	public void dajListeKlientow(); 
+	public List<Klient> dajListeKlientow(); 
 	
 
 }

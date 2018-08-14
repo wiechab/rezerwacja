@@ -29,11 +29,23 @@ public class PokojHotelowySerwis implements PokojHotelowy{
 	@Override
 	@POST
 	@Path("/dodaj")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Response dodajPokoj(Pokoj pokoj) { 
+		try {
 		pokojHotelowyDao.create(pokoj);
-		return Response.status(200).entity(pokoj.getId()).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println(pokoj.toString()); //to działa
+		return Response.status(200).entity(pokoj.getNumer() ).build();
+		//return Response.status(200).entity("kat:" + pokoj.getKategoria() + "opis:" +  pokoj.getOpis() ).build(); //Unexpected 'k'
+		//return Response.status(200).entity(pokoj.toString()).build(); //teraz ma Unexpected 'P', trzeba chyba zbudować mu Jsona
+		//return Response.status(200).entity(pokoj.getKategoria() ).build();//pojedyncze działają //pokoj.getKategoria() getId()
+		//return Response.status(200).entity(pokoj.toString()).build();// to nie działa 
+		//return Response.status(200).entity(pokoj).build(); //to nie działa
 	}
+	
 
 	@Override
 	@PUT

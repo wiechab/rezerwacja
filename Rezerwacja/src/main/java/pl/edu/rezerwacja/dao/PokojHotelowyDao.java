@@ -52,13 +52,15 @@ public class PokojHotelowyDao {
 	public void usun(Long id) {
 		em.remove(Pokoj.class);
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	public List<Pokoj> pokojeObiektu (Long obiektId){
 		Query query = em.createQuery("select p from Pokoj p where p.obiekt.id = ?1", Pokoj.class);
 		query.setParameter(1, obiektId);
 		return query.getResultList();
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	public List<Pokoj> pokojeObiektuKategoria (Long obiektId, String kategoria){
 		Query query = em.createQuery("select p from Pokoj p where p.obiekt.id = ?1 and p.kategoria =?2", Pokoj.class);
 		query.setParameter(1, obiektId);

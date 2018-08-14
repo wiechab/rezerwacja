@@ -1,16 +1,21 @@
 package pl.edu.rezerwacja.api;
 
+import javax.ws.rs.core.Response;
+
+import pl.edu.rezerwacja.entities.Cennik;
+
 //cennik będzie obowiązywał dla danej kategorii pokoju w danym sezonie, w danym obiekcie
 
 public interface CennikHotelowy {
 
-	public Long dodajCennik(Long id_obiektu, int rok, String sezon) ; //zwraca id
+	public Response dodajCennik(Cennik cennik) ; //zwraca id
 	
-	public void modyfikujCennik(Long id);  //dla id
+	public Response modyfikujCennik(Cennik cennik);  //dla id
 	
 	public void usunCennik(Long id);  //dla id
 	
-	public void przegladajCennik(Long id);
+	public Response przegladajCennik(Long id);
+
 	
 
 }
