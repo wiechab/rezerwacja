@@ -56,6 +56,7 @@ public class PokojHotelowySerwis implements PokojHotelowy{
 
 	@Override
 	@GET
+	@Path("/przegladaj/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response przegladajPokoj(@PathParam(value = "id") Long id){
 		Pokoj result = pokojHotelowyDao.find(id);
@@ -67,7 +68,8 @@ public class PokojHotelowySerwis implements PokojHotelowy{
 	@Override
 	@GET
 	@Path("/szukaj/{idObiektu}")
-	public List<Pokoj> dajListePokoiObiektu(@PathParam("idObiektu") Long id) {
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Pokoj> dajListePokoiObiektu(@PathParam(value = "idObiektu") Long id) {
 		List<Pokoj> pokoje = pokojHotelowyDao.pokojeObiektu(id);
 		return pokoje;
 	}
@@ -75,6 +77,7 @@ public class PokojHotelowySerwis implements PokojHotelowy{
 	@Override
 	@GET
 	@Path("/obiekt/{idObiektu}/kategoria/{kategoria}")
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Pokoj> dajListePokoiObiektuKateg(@PathParam("idObiektu") Long id,
 			@PathParam("kategoaia") String kategoria) {
 		List<Pokoj> pokoje = pokojHotelowyDao.pokojeObiektuKategoria(id, kategoria);

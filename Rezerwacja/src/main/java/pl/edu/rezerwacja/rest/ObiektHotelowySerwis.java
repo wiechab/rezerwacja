@@ -69,14 +69,31 @@ public class ObiektHotelowySerwis implements ObiektHotelowy{
 	@Override
 	@GET
 	// wstawić adnotacje dla XMLelement - listy
-	@Path("/szukaj/{miejscowosc}")
+	@Path("/szukaj/miejscowosc/{miejscowosc}")
+	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public List<Obiekt> szukajObiektu(@PathParam("miejscowosc") String miejscowosc) {
-		
-		List<Obiekt> obiekty = obiektHotelowyDao.szukajPoMiejscowosci(miejscowosc);
-		return obiekty;
+		log.info(miejscowosc);
+		//List<Obiekt> obiekty = obiektHotelowyDao.szukajPoMiejscowosci(miejscowosc);
+		//return obiekty;
 		//return Response.status(200).allow(obiekty).build();
-
+		return obiektHotelowyDao.szukajPoMiejscowosci(miejscowosc);
 		}
 
 
+
+	@GET
+	@Path("/szukaj/nazwa/{nazwa}")
+	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
+	public Response szukajObiektuNazwa(@PathParam("nazwa") String nazwa) {
+		log.info(nazwa);
+		//List<Obiekt> obiekty = obiektHotelowyDao.szukajPoMiejscowosci(miejscowosc);
+		//return obiekty;
+		//return Response.status(200).allow(obiekty).build();
+		System.out.println(nazwa);
+		Obiekt result = obiektHotelowyDao.szukajPoNazwie(nazwa);
+		System.out.println(result.getMiejscowosc() + ' ' +  result.getAdres() + result.getNazwa());
+		//return obiektHotelowyDao.szukajPoNazwie(nazwa);
+		return Response.status(200).entity(result).build();
+		}
+	
 }

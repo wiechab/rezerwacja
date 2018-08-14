@@ -26,12 +26,17 @@ public class Pokoj implements Serializable {
 	@Column(name = "NUMER", nullable = false, length = 10)
 	private String numer;
 	
+	//w kategorii zawarta ilość osób
+	
 	@Column(name = "KATEGORIA", nullable = false, length = 15)
 	@Enumerated(EnumType.STRING)
 	private KategoriaPokoju kategoria;
 	
 	@Column(name = "KONDYGNACJA")
 	private int kondygnacja;
+	
+	@Column(name = "OPIS")
+	private String opis;
 
 	public Long getId() {
 		return id;
@@ -71,6 +76,14 @@ public class Pokoj implements Serializable {
 
 	public void setKondygnacja(int kondygnacja) {
 		this.kondygnacja = kondygnacja;
+	}
+
+	public String getOpis() {
+		return opis;
+	}
+
+	public void setOpis(String opis) {
+		this.opis = opis;
 	}
 
 	/*

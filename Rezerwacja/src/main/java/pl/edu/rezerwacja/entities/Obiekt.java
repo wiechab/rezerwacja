@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 /**
@@ -12,6 +15,11 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "REZ_OBIEKT_HOTELOWY")
+@NamedEntityGraph(name = "graph.Obiekt.pokoje", attributeNodes = { @NamedAttributeNode("pokoje"), @NamedAttributeNode("cennik") })
+
+//@NamedEntityGraph(name = "graph.Obiekt.cennik", attributeNodes = { @NamedAttributeNode("cennik") })
+
+@XmlRootElement
 public class Obiekt implements Serializable {
 
 	
@@ -53,8 +61,8 @@ public class Obiekt implements Serializable {
 	public Long getId() {
 		return id;
 	}
-
-
+	
+	@XmlAttribute
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -64,7 +72,7 @@ public class Obiekt implements Serializable {
 		return nazwa;
 	}
 
-
+	@XmlElement
 	public void setNazwa(String nazwa) {
 		this.nazwa = nazwa;
 	}
@@ -74,7 +82,7 @@ public class Obiekt implements Serializable {
 		return miejscowosc;
 	}
 
-
+	@XmlElement
 	public void setMiejscowosc(String miejscowosc) {
 		this.miejscowosc = miejscowosc;
 	}
@@ -84,17 +92,17 @@ public class Obiekt implements Serializable {
 		return adres;
 	}
 
-
+	@XmlElement
 	public void setAdres(String adres) {
 		this.adres = adres;
 	}
 
-
+	
 	public KategoriaObiektu getKategoria() {
 		return kategoria;
 	}
 
-
+	@XmlElement
 	public void setKategoria(KategoriaObiektu kategoria) {
 		this.kategoria = kategoria;
 	}
@@ -104,7 +112,7 @@ public class Obiekt implements Serializable {
 		return opis;
 	}
 
-
+	@XmlElement
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
@@ -134,7 +142,7 @@ public class Obiekt implements Serializable {
 		return pokoje;
 	}
 
-
+	@XmlElement
 	public void setPokoje(List<Pokoj> pokoje) {
 		this.pokoje = pokoje;
 	}
@@ -144,11 +152,17 @@ public class Obiekt implements Serializable {
 		return cennik;
 	}
 
-
+	@XmlElement
 	public void setCennik(List<Cennik> cennik) {
 		this.cennik = cennik;
 	}
-   
+	
+	@Override
+	public String toString() {
+		return String.format(
+				"Obiekt [id=%s, nazwa=%s, miejscowosc=%s, adres=%s, kategoria=%s, adres_e_mail=%s, telefon=%s, opis=%s, pokoje=%s, cennik=%s]",
+				id, nazwa, miejscowosc, adres, kategoria, adres_e_mail, telefon, opis, pokoje, cennik);
+	}
 /*
 	public ObiektHotelowy() {
 		super();

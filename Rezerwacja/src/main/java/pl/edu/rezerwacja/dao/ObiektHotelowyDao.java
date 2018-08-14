@@ -67,7 +67,7 @@ public class ObiektHotelowyDao {
 		return em.merge(obiekt);
 	}
 
-	
+	@SuppressWarnings("unchecked")
 	public List<Obiekt> listaObiektow (){
 		Query query = em.createQuery("select o from Obiekt o");
 		return query.getResultList();
@@ -81,17 +81,22 @@ public class ObiektHotelowyDao {
 		return updateObiektHotelowy;
 	}
 	
+	
 	public Obiekt szukajPoNazwie(String nazwa) {
 		Query query = em.createQuery(
+				//"select o from Obiekt o where o.nazwa = ?1");
 				"select o from Obiekt o LEFT JOIN FETCH o.pokoje p LEFT JOIN o.cennik c where o.nazwa = ?1");
 		query.setParameter(1, nazwa);
 		return (Obiekt) query.getSingleResult();
 	}
-
+	
+	@SuppressWarnings("unchecked")
 	public  List<Obiekt>  szukajPoMiejscowosci(String miejscowosc) {
 		Query query = em.createQuery(
-				"select o from Obiekt o LEFT JOIN FETCH o.pokoje p LEFT JOIN o.cennik c where o.miejscowosc = ?1");
+				"select o from Obiekt o where o.miejscowosc = ?1");
+				//"select o from Obiekt o LEFT JOIN FETCH o.pokoje p LEFT JOIN o.cennik c where o.miejscowosc = ?1");
 		query.setParameter(1, miejscowosc);
+		query.getResultList().forEach(System.out::println);
 		return query.getResultList();
 	}
 	
