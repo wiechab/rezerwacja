@@ -91,16 +91,34 @@ public class PokojHotelowySerwis implements PokojHotelowy{
 	@Path("/obiekt/{idObiektu}/kategoria/{kategoria}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Pokoj> dajListePokoiObiektuKateg(@PathParam("idObiektu") Long id,
-			@PathParam("kategoaia") String kategoria) {
+			@PathParam("kategoria") String kategoria) {
 		List<Pokoj> pokoje = pokojHotelowyDao.pokojeObiektuKategoria(id, kategoria);
 		return pokoje;
 	}
 	
+
+/*
 	@Override
-	public void dajListePokoiObiektuNaDzien(Long id, LocalDate data) {
+	@GET
+	@Path("/obiekt/{idObiektu}/daty/{dataOd} {dataDo}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Pokoj> dajListeWolnychPokoi(@PathParam("idObiektu") Long id_obiektu, 
+			@PathParam("dataOd") LocalDate dataOd, @PathParam("dataDo") LocalDate dataDo) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
+
+	@Override
+	@GET
+	@Path("/obiekt/{idObiektu}/kategoria/{kategoria}/daty/{dataOd} {dataDo}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Pokoj> dajListeWolnychPokoi(@PathParam("idObiektu") Long id_obiektu,
+			@PathParam("kategoria") String kategoria, 
+			@PathParam("dataOd") LocalDate dataOd, @PathParam("dataDo") LocalDate dataDo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+*/
 
 }

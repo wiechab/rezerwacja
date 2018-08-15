@@ -93,8 +93,8 @@ public class Pokoj implements Serializable {
 	@Override
 	public String toString() {
 		return String.format(
-				"Pokoj [id=%s, numer=%s, kategoria=%s, kondygnacja=%s, opis=%s]",
-				id, numer, kategoria, kondygnacja, opis);
+				"Pokoj [id=%s, obiekt = %s, numer=%s, kategoria=%s, kondygnacja=%s, opis=%s]",
+				id, obiekt.getNazwa(), numer, kategoria, kondygnacja, opis);
 		/*
 		return String.format(
 				"Pokoj [id=%s, obiekt=%s, numer=%s, kategoria=%s, kondygnacja=%s, opis=%s]",

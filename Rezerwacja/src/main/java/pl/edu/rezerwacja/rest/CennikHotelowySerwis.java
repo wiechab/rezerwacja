@@ -62,7 +62,7 @@ package pl.edu.rezerwacja.rest;
 		@Path("/usun/{id}")
 		public void usunCennik(@PathParam("id") Long id) {
 			// TODO Auto-generated method stub
-			
+			cennikHotelowyDao.usun(id );
 		}
 
 		// podaję id obiektu

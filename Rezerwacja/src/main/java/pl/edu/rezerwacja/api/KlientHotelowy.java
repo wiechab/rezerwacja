@@ -16,6 +16,8 @@ public interface KlientHotelowy {
 	
 	public Response przegladajDaneKlienta(Long id);
 	
+	public Response daneKlienta(String login);
+	
 	public Response szukajKlienta(String nazwisko_nazwa);
 	
 	public List<Klient> dajListeKlientow(); 
